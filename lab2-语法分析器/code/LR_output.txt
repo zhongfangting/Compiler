@@ -1,0 +1,137 @@
+*************************** Output of LR synatactic analyzer:***************************
+expression:a=a+b——————>p=pxp#
+Analysis stack                          Current symbol           Remaining seq            Operation                     
+#0                                                               p=pxp#                   Start                         
+#0                                      p                        =pxp#                    push:p2                       
+#0 p2                                   =                        pxp#                     push:=3                       
+#0 p2 =3                                p                        xp#                      push:p9                       
+#0 p2 =3 p9                             x                        p#                       reduce:r8(F->p)               
+#0 p2 =3 F6                             x                        p#                       reduce:r6(T->F)               
+#0 p2 =3 T5                             x                        p#                       reduce:r4(E->T)               
+#0 p2 =3 E4                             x                        p#                       push:x10                      
+#0 p2 =3 E4 x10                         p                        #                        push:p9                       
+#0 p2 =3 E4 x10 p9                      #                                                 reduce:r8(F->p)               
+#0 p2 =3 E4 x10 F6                      #                                                 reduce:r6(T->F)               
+#0 p2 =3 E4 x10 T13                     #                                                 reduce:r3(E->ExT)             
+#0 p2 =3 E4                             #                                                 reduce:r2(S->p=E)             
+#0 S1                                   #                                                 OK                            
+Right!
+
+*************************** Output of LR synatactic analyzer:***************************
+expression:a=a*(a+b))*7——————>p=py(pxp))yi#
+Analysis stack                          Current symbol           Remaining seq            Operation                     
+#0                                                               p=py(pxp))yi#            Start                         
+#0                                      p                        =py(pxp))yi#             push:p2                       
+#0 p2                                   =                        py(pxp))yi#              push:=3                       
+#0 p2 =3                                p                        y(pxp))yi#               push:p9                       
+#0 p2 =3 p9                             y                        (pxp))yi#                reduce:r8(F->p)               
+#0 p2 =3 F6                             y                        (pxp))yi#                reduce:r6(T->F)               
+#0 p2 =3 T5                             y                        (pxp))yi#                push:y11                      
+#0 p2 =3 T5 y11                         (                        pxp))yi#                 push:(7                       
+#0 p2 =3 T5 y11 (7                      p                        xp))yi#                  push:p9                       
+#0 p2 =3 T5 y11 (7 p9                   x                        p))yi#                   reduce:r8(F->p)               
+#0 p2 =3 T5 y11 (7 F6                   x                        p))yi#                   reduce:r6(T->F)               
+#0 p2 =3 T5 y11 (7 T5                   x                        p))yi#                   reduce:r4(E->T)               
+#0 p2 =3 T5 y11 (7 E12                  x                        p))yi#                   push:x10                      
+#0 p2 =3 T5 y11 (7 E12 x10              p                        ))yi#                    push:p9                       
+#0 p2 =3 T5 y11 (7 E12 x10 p9           )                        )yi#                     reduce:r8(F->p)               
+#0 p2 =3 T5 y11 (7 E12 x10 F6           )                        )yi#                     reduce:r6(T->F)               
+error: search table failed.
+
+*************************** Output of LR synatactic analyzer:***************************
+expression:a=c%d+a/c+a-c——————>p=pypxpypxpxp#
+Analysis stack                          Current symbol           Remaining seq            Operation                     
+#0                                                               p=pypxpypxpxp#           Start                         
+#0                                      p                        =pypxpypxpxp#            push:p2                       
+#0 p2                                   =                        pypxpypxpxp#             push:=3                       
+#0 p2 =3                                p                        ypxpypxpxp#              push:p9                       
+#0 p2 =3 p9                             y                        pxpypxpxp#               reduce:r8(F->p)               
+#0 p2 =3 F6                             y                        pxpypxpxp#               reduce:r6(T->F)               
+#0 p2 =3 T5                             y                        pxpypxpxp#               push:y11                      
+#0 p2 =3 T5 y11                         p                        xpypxpxp#                push:p9                       
+#0 p2 =3 T5 y11 p9                      x                        pypxpxp#                 reduce:r8(F->p)               
+#0 p2 =3 T5 y11 F14                     x                        pypxpxp#                 reduce:r5(T->TyF)             
+#0 p2 =3 T5                             x                        pypxpxp#                 reduce:r4(E->T)               
+#0 p2 =3 E4                             x                        pypxpxp#                 push:x10                      
+#0 p2 =3 E4 x10                         p                        ypxpxp#                  push:p9                       
+#0 p2 =3 E4 x10 p9                      y                        pxpxp#                   reduce:r8(F->p)               
+#0 p2 =3 E4 x10 F6                      y                        pxpxp#                   reduce:r6(T->F)               
+#0 p2 =3 E4 x10 T13                     y                        pxpxp#                   push:y11                      
+#0 p2 =3 E4 x10 T13 y11                 p                        xpxp#                    push:p9                       
+#0 p2 =3 E4 x10 T13 y11 p9              x                        pxp#                     reduce:r8(F->p)               
+#0 p2 =3 E4 x10 T13 y11 F14             x                        pxp#                     reduce:r5(T->TyF)             
+#0 p2 =3 E4 x10 T13                     x                        pxp#                     reduce:r3(E->ExT)             
+#0 p2 =3 E4                             x                        pxp#                     push:x10                      
+#0 p2 =3 E4 x10                         p                        xp#                      push:p9                       
+#0 p2 =3 E4 x10 p9                      x                        p#                       reduce:r8(F->p)               
+#0 p2 =3 E4 x10 F6                      x                        p#                       reduce:r6(T->F)               
+#0 p2 =3 E4 x10 T13                     x                        p#                       reduce:r3(E->ExT)             
+#0 p2 =3 E4                             x                        p#                       push:x10                      
+#0 p2 =3 E4 x10                         p                        #                        push:p9                       
+#0 p2 =3 E4 x10 p9                      #                                                 reduce:r8(F->p)               
+#0 p2 =3 E4 x10 F6                      #                                                 reduce:r6(T->F)               
+#0 p2 =3 E4 x10 T13                     #                                                 reduce:r3(E->ExT)             
+#0 p2 =3 E4                             #                                                 reduce:r2(S->p=E)             
+#0 S1                                   #                                                 OK                            
+Right!
+
+*************************** Output of LR synatactic analyzer:***************************
+expression:c=((a*(-7))——————>p=((py(i))#
+Analysis stack                          Current symbol           Remaining seq            Operation                     
+#0                                                               p=((py(i))#              Start                         
+#0                                      p                        =((py(i))#               push:p2                       
+#0 p2                                   =                        ((py(i))#                push:=3                       
+#0 p2 =3                                (                        (py(i))#                 push:(7                       
+#0 p2 =3 (7                             (                        py(i))#                  push:(7                       
+#0 p2 =3 (7 (7                          p                        y(i))#                   push:p9                       
+#0 p2 =3 (7 (7 p9                       y                        (i))#                    reduce:r8(F->p)               
+#0 p2 =3 (7 (7 F6                       y                        (i))#                    reduce:r6(T->F)               
+#0 p2 =3 (7 (7 T5                       y                        (i))#                    push:y11                      
+#0 p2 =3 (7 (7 T5 y11                   (                        i))#                     push:(7                       
+#0 p2 =3 (7 (7 T5 y11 (7                i                        ))#                      push:i8                       
+#0 p2 =3 (7 (7 T5 y11 (7 i8             )                        )#                       reduce:r7(F->i)               
+#0 p2 =3 (7 (7 T5 y11 (7 F6             )                        )#                       reduce:r6(T->F)               
+error: search table failed.
+
+*************************** Output of LR synatactic analyzer:***************************
+expression:a=-7——————>p=i#
+Analysis stack                          Current symbol           Remaining seq            Operation                     
+#0                                                               p=i#                     Start                         
+#0                                      p                        =i#                      push:p2                       
+#0 p2                                   =                        i#                       push:=3                       
+#0 p2 =3                                i                        #                        push:i8                       
+#0 p2 =3 i8                             #                                                 reduce:r7(F->i)               
+#0 p2 =3 F6                             #                                                 reduce:r6(T->F)               
+#0 p2 =3 T5                             #                                                 reduce:r4(E->T)               
+#0 p2 =3 E4                             #                                                 reduce:r2(S->p=E)             
+#0 S1                                   #                                                 OK                            
+Right!
+
+*************************** Output of LR synatactic analyzer:***************************
+expression:8=a——————>i=p#
+Analysis stack                          Current symbol           Remaining seq            Operation                     
+#0                                                               i=p#                     Start                         
+error: search table failed.
+
+*************************** Output of LR synatactic analyzer:***************************
+expression:a=9*((b+c))%7-3)——————>p=iy((pxp))yii)#
+Analysis stack                          Current symbol           Remaining seq            Operation                     
+#0                                                               p=iy((pxp))yii)#         Start                         
+#0                                      p                        =iy((pxp))yii)#          push:p2                       
+#0 p2                                   =                        iy((pxp))yii)#           push:=3                       
+#0 p2 =3                                i                        y((pxp))yii)#            push:i8                       
+#0 p2 =3 i8                             y                        ((pxp))yii)#             reduce:r7(F->i)               
+#0 p2 =3 F6                             y                        ((pxp))yii)#             reduce:r6(T->F)               
+#0 p2 =3 T5                             y                        ((pxp))yii)#             push:y11                      
+#0 p2 =3 T5 y11                         (                        (pxp))yii)#              push:(7                       
+#0 p2 =3 T5 y11 (7                      (                        pxp))yii)#               push:(7                       
+#0 p2 =3 T5 y11 (7 (7                   p                        xp))yii)#                push:p9                       
+#0 p2 =3 T5 y11 (7 (7 p9                x                        p))yii)#                 reduce:r8(F->p)               
+#0 p2 =3 T5 y11 (7 (7 F6                x                        p))yii)#                 reduce:r6(T->F)               
+#0 p2 =3 T5 y11 (7 (7 T5                x                        p))yii)#                 reduce:r4(E->T)               
+#0 p2 =3 T5 y11 (7 (7 E12               x                        p))yii)#                 push:x10                      
+#0 p2 =3 T5 y11 (7 (7 E12 x10           p                        ))yii)#                  push:p9                       
+#0 p2 =3 T5 y11 (7 (7 E12 x10 p9        )                        )yii)#                   reduce:r8(F->p)               
+#0 p2 =3 T5 y11 (7 (7 E12 x10 F6        )                        )yii)#                   reduce:r6(T->F)               
+error: search table failed.
+

@@ -1,0 +1,13 @@
+#include <stdio.h>
+
+int main(){
+    int a,b,c,d;
+    //测试样例
+    a=a+b;             //rigth
+    a=a*(a+b))*7;      //error
+    a=c%d+a/c+a-c;     //right
+    c=((a*(-7));       //error
+    a=-7;              //right
+    8=a;               //error
+    a=9*((b+c))%7-3);  //error
+}

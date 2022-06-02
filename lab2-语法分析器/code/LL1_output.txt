@@ -1,0 +1,196 @@
+*************************** Output of LL1 synatactic analyzer:***************************
+expression:a=a+b——————>p=pxp#
+Analysis stack           Current symbol           Remaining seq            Operation                     
+#S                                                p=pxp#                   Start                         
+#S                       p                        =pxp#                    select:S->p=E                 
+#E=p                     p                        =pxp#                    match:p=p                     
+#E=                      =                        pxp#                     match:===                     
+#E                       p                        xp#                      select:E->TA                  
+#AT                      p                        xp#                      select:T->FB                  
+#ABF                     p                        xp#                      select:F->p                   
+#ABp                     p                        xp#                      match:p=p                     
+#AB                      x                        p#                       select:B->e                   
+#A                       x                        p#                       select:A->xTA                 
+#ATx                     x                        p#                       match:x=x                     
+#AT                      p                        #                        select:T->FB                  
+#ABF                     p                        #                        select:F->p                   
+#ABp                     p                        #                        match:p=p                     
+#AB                      #                                                 select:B->e                   
+#A                       #                                                 select:A->e                   
+#                        #                                                 match:#=#                     
+Right!
+
+*************************** Output of LL1 synatactic analyzer:***************************
+expression:a=a*(a+b))*7——————>p=py(pxp))yi#
+Analysis stack           Current symbol           Remaining seq            Operation                     
+#S                                                p=py(pxp))yi#            Start                         
+#S                       p                        =py(pxp))yi#             select:S->p=E                 
+#E=p                     p                        =py(pxp))yi#             match:p=p                     
+#E=                      =                        py(pxp))yi#              match:===                     
+#E                       p                        y(pxp))yi#               select:E->TA                  
+#AT                      p                        y(pxp))yi#               select:T->FB                  
+#ABF                     p                        y(pxp))yi#               select:F->p                   
+#ABp                     p                        y(pxp))yi#               match:p=p                     
+#AB                      y                        (pxp))yi#                select:B->yFB                 
+#ABFy                    y                        (pxp))yi#                match:y=y                     
+#ABF                     (                        pxp))yi#                 select:F->(E)                 
+#AB)E(                   (                        pxp))yi#                 match:(=(                     
+#AB)E                    p                        xp))yi#                  select:E->TA                  
+#AB)AT                   p                        xp))yi#                  select:T->FB                  
+#AB)ABF                  p                        xp))yi#                  select:F->p                   
+#AB)ABp                  p                        xp))yi#                  match:p=p                     
+#AB)AB                   x                        p))yi#                   select:B->e                   
+#AB)A                    x                        p))yi#                   select:A->xTA                 
+#AB)ATx                  x                        p))yi#                   match:x=x                     
+#AB)AT                   p                        ))yi#                    select:T->FB                  
+#AB)ABF                  p                        ))yi#                    select:F->p                   
+#AB)ABp                  p                        ))yi#                    match:p=p                     
+#AB)AB                   )                        )yi#                     select:B->e                   
+#AB)A                    )                        )yi#                     select:A->e                   
+#AB)                     )                        )yi#                     match:)=)                     
+#AB                      )                        yi#                      select:B->e                   
+#A                       )                        yi#                      select:A->e                   
+error:matching error!
+
+*************************** Output of LL1 synatactic analyzer:***************************
+expression:a=c%d+a/c+a-c——————>p=pypxpypxpxp#
+Analysis stack           Current symbol           Remaining seq            Operation                     
+#S                                                p=pypxpypxpxp#           Start                         
+#S                       p                        =pypxpypxpxp#            select:S->p=E                 
+#E=p                     p                        =pypxpypxpxp#            match:p=p                     
+#E=                      =                        pypxpypxpxp#             match:===                     
+#E                       p                        ypxpypxpxp#              select:E->TA                  
+#AT                      p                        ypxpypxpxp#              select:T->FB                  
+#ABF                     p                        ypxpypxpxp#              select:F->p                   
+#ABp                     p                        ypxpypxpxp#              match:p=p                     
+#AB                      y                        pxpypxpxp#               select:B->yFB                 
+#ABFy                    y                        pxpypxpxp#               match:y=y                     
+#ABF                     p                        xpypxpxp#                select:F->p                   
+#ABp                     p                        xpypxpxp#                match:p=p                     
+#AB                      x                        pypxpxp#                 select:B->e                   
+#A                       x                        pypxpxp#                 select:A->xTA                 
+#ATx                     x                        pypxpxp#                 match:x=x                     
+#AT                      p                        ypxpxp#                  select:T->FB                  
+#ABF                     p                        ypxpxp#                  select:F->p                   
+#ABp                     p                        ypxpxp#                  match:p=p                     
+#AB                      y                        pxpxp#                   select:B->yFB                 
+#ABFy                    y                        pxpxp#                   match:y=y                     
+#ABF                     p                        xpxp#                    select:F->p                   
+#ABp                     p                        xpxp#                    match:p=p                     
+#AB                      x                        pxp#                     select:B->e                   
+#A                       x                        pxp#                     select:A->xTA                 
+#ATx                     x                        pxp#                     match:x=x                     
+#AT                      p                        xp#                      select:T->FB                  
+#ABF                     p                        xp#                      select:F->p                   
+#ABp                     p                        xp#                      match:p=p                     
+#AB                      x                        p#                       select:B->e                   
+#A                       x                        p#                       select:A->xTA                 
+#ATx                     x                        p#                       match:x=x                     
+#AT                      p                        #                        select:T->FB                  
+#ABF                     p                        #                        select:F->p                   
+#ABp                     p                        #                        match:p=p                     
+#AB                      #                                                 select:B->e                   
+#A                       #                                                 select:A->e                   
+#                        #                                                 match:#=#                     
+Right!
+
+*************************** Output of LL1 synatactic analyzer:***************************
+expression:c=((a*(-7))——————>p=((py(i))#
+Analysis stack           Current symbol           Remaining seq            Operation                     
+#S                                                p=((py(i))#              Start                         
+#S                       p                        =((py(i))#               select:S->p=E                 
+#E=p                     p                        =((py(i))#               match:p=p                     
+#E=                      =                        ((py(i))#                match:===                     
+#E                       (                        (py(i))#                 select:E->TA                  
+#AT                      (                        (py(i))#                 select:T->FB                  
+#ABF                     (                        (py(i))#                 select:F->(E)                 
+#AB)E(                   (                        (py(i))#                 match:(=(                     
+#AB)E                    (                        py(i))#                  select:E->TA                  
+#AB)AT                   (                        py(i))#                  select:T->FB                  
+#AB)ABF                  (                        py(i))#                  select:F->(E)                 
+#AB)AB)E(                (                        py(i))#                  match:(=(                     
+#AB)AB)E                 p                        y(i))#                   select:E->TA                  
+#AB)AB)AT                p                        y(i))#                   select:T->FB                  
+#AB)AB)ABF               p                        y(i))#                   select:F->p                   
+#AB)AB)ABp               p                        y(i))#                   match:p=p                     
+#AB)AB)AB                y                        (i))#                    select:B->yFB                 
+#AB)AB)ABFy              y                        (i))#                    match:y=y                     
+#AB)AB)ABF               (                        i))#                     select:F->(E)                 
+#AB)AB)AB)E(             (                        i))#                     match:(=(                     
+#AB)AB)AB)E              i                        ))#                      select:E->TA                  
+#AB)AB)AB)AT             i                        ))#                      select:T->FB                  
+#AB)AB)AB)ABF            i                        ))#                      select:F->i                   
+#AB)AB)AB)ABi            i                        ))#                      match:i=i                     
+#AB)AB)AB)AB             )                        )#                       select:B->e                   
+#AB)AB)AB)A              )                        )#                       select:A->e                   
+#AB)AB)AB)               )                        )#                       match:)=)                     
+#AB)AB)AB                )                        #                        select:B->e                   
+#AB)AB)A                 )                        #                        select:A->e                   
+#AB)AB)                  )                        #                        match:)=)                     
+#AB)AB                   #                                                 select:B->e                   
+#AB)A                    #                                                 select:A->e                   
+error:matching error!
+
+*************************** Output of LL1 synatactic analyzer:***************************
+expression:a=-7——————>p=i#
+Analysis stack           Current symbol           Remaining seq            Operation                     
+#S                                                p=i#                     Start                         
+#S                       p                        =i#                      select:S->p=E                 
+#E=p                     p                        =i#                      match:p=p                     
+#E=                      =                        i#                       match:===                     
+#E                       i                        #                        select:E->TA                  
+#AT                      i                        #                        select:T->FB                  
+#ABF                     i                        #                        select:F->i                   
+#ABi                     i                        #                        match:i=i                     
+#AB                      #                                                 select:B->e                   
+#A                       #                                                 select:A->e                   
+#                        #                                                 match:#=#                     
+Right!
+
+*************************** Output of LL1 synatactic analyzer:***************************
+expression:8=a——————>i=p#
+Analysis stack           Current symbol           Remaining seq            Operation                     
+#S                                                i=p#                     Start                         
+error: search table failed!
+
+*************************** Output of LL1 synatactic analyzer:***************************
+expression:a=9*((b+c))%7-3)——————>p=iy((pxp))yii)#
+Analysis stack           Current symbol           Remaining seq            Operation                     
+#S                                                p=iy((pxp))yii)#         Start                         
+#S                       p                        =iy((pxp))yii)#          select:S->p=E                 
+#E=p                     p                        =iy((pxp))yii)#          match:p=p                     
+#E=                      =                        iy((pxp))yii)#           match:===                     
+#E                       i                        y((pxp))yii)#            select:E->TA                  
+#AT                      i                        y((pxp))yii)#            select:T->FB                  
+#ABF                     i                        y((pxp))yii)#            select:F->i                   
+#ABi                     i                        y((pxp))yii)#            match:i=i                     
+#AB                      y                        ((pxp))yii)#             select:B->yFB                 
+#ABFy                    y                        ((pxp))yii)#             match:y=y                     
+#ABF                     (                        (pxp))yii)#              select:F->(E)                 
+#AB)E(                   (                        (pxp))yii)#              match:(=(                     
+#AB)E                    (                        pxp))yii)#               select:E->TA                  
+#AB)AT                   (                        pxp))yii)#               select:T->FB                  
+#AB)ABF                  (                        pxp))yii)#               select:F->(E)                 
+#AB)AB)E(                (                        pxp))yii)#               match:(=(                     
+#AB)AB)E                 p                        xp))yii)#                select:E->TA                  
+#AB)AB)AT                p                        xp))yii)#                select:T->FB                  
+#AB)AB)ABF               p                        xp))yii)#                select:F->p                   
+#AB)AB)ABp               p                        xp))yii)#                match:p=p                     
+#AB)AB)AB                x                        p))yii)#                 select:B->e                   
+#AB)AB)A                 x                        p))yii)#                 select:A->xTA                 
+#AB)AB)ATx               x                        p))yii)#                 match:x=x                     
+#AB)AB)AT                p                        ))yii)#                  select:T->FB                  
+#AB)AB)ABF               p                        ))yii)#                  select:F->p                   
+#AB)AB)ABp               p                        ))yii)#                  match:p=p                     
+#AB)AB)AB                )                        )yii)#                   select:B->e                   
+#AB)AB)A                 )                        )yii)#                   select:A->e                   
+#AB)AB)                  )                        )yii)#                   match:)=)                     
+#AB)AB                   )                        yii)#                    select:B->e                   
+#AB)A                    )                        yii)#                    select:A->e                   
+#AB)                     )                        yii)#                    match:)=)                     
+#AB                      y                        ii)#                     select:B->yFB                 
+#ABFy                    y                        ii)#                     match:y=y                     
+#ABF                     i                        i)#                      select:F->i                   
+#ABi                     i                        i)#                      match:i=i                     
+error: search table failed!
+
