@@ -1,0 +1,10 @@
+#include <stdio.h>
+
+int main(){
+    int a,b,c,d,ss;
+    //测试样例
+    c=(a+b)*c;             
+    ss=a1*(-2.345)+8.09-a%6;
+    a=a*(c+d)/2%d;
+    a=(a+b)%(a+a*b);
+}

@@ -1,0 +1,233 @@
+*********************************************************** Output of LL1 Semantic Analyzer:***********************************************************
+expression:c=(a+b)*c----------p=(p+p)*p#
+SYN Analysis stack                           Current character        Remaining sequence       Operation                     SEM Analysis stack    Quater        
+#S                                                                    p=(p+p)*p#               Start                                                             
+#S                                           p                        =(p+p)*p#                select:S->p{PUSH}=E{GEQ(=)}                                       
+#GEQ(=)E=PUSH(c)p                            p                        =(p+p)*p#                match:p=p                                                         
+#GEQ(=)E=PUSH(c)                             =                        (p+p)*p#                 push to SEM:c                 c                                   
+#GEQ(=)E=                                    =                        (p+p)*p#                 match:===                     c                                   
+#GEQ(=)E                                     (                        p+p)*p#                  select:E->TA                  c                                   
+#GEQ(=)AT                                    (                        p+p)*p#                  select:T->FB                  c                                   
+#GEQ(=)ABF                                   (                        p+p)*p#                  select:F->(E)                 c                                   
+#GEQ(=)AB)E(                                 (                        p+p)*p#                  match:(=(                     c                                   
+#GEQ(=)AB)E                                  p                        +p)*p#                   select:E->TA                  c                                   
+#GEQ(=)AB)AT                                 p                        +p)*p#                   select:T->FB                  c                                   
+#GEQ(=)AB)ABF                                p                        +p)*p#                   select:F->p{PUSH}             c                                   
+#GEQ(=)AB)ABPUSH(a)p                         p                        +p)*p#                   match:p=p                     c                                   
+#GEQ(=)AB)ABPUSH(a)                          +                        p)*p#                    push to SEM:a                 c a                                 
+#GEQ(=)AB)AB                                 +                        p)*p#                    select:B->e                   c a                                 
+#GEQ(=)AB)A                                  +                        p)*p#                    select:A->+T{GEQ(+)}A         c a                                 
+#GEQ(=)AB)AGEQ(+)T+                          +                        p)*p#                    match:+=+                     c a                                 
+#GEQ(=)AB)AGEQ(+)T                           p                        )*p#                     select:T->FB                  c a                                 
+#GEQ(=)AB)AGEQ(+)BF                          p                        )*p#                     select:F->p{PUSH}             c a                                 
+#GEQ(=)AB)AGEQ(+)BPUSH(b)p                   p                        )*p#                     match:p=p                     c a                                 
+#GEQ(=)AB)AGEQ(+)BPUSH(b)                    )                        *p#                      push to SEM:b                 c a b                               
+#GEQ(=)AB)AGEQ(+)B                           )                        *p#                      select:B->e                   c a b                               
+#GEQ(=)AB)AGEQ(+)                            )                        *p#                      generate quaternion           c t1                  + a b t1      
+#GEQ(=)AB)A                                  )                        *p#                      select:A->e                   c t1                                
+#GEQ(=)AB)                                   )                        *p#                      match:)=)                     c t1                                
+#GEQ(=)AB                                    *                        p#                       select:B->*F{GEQ(*)}B         c t1                                
+#GEQ(=)ABGEQ(*)F*                            *                        p#                       match:*=*                     c t1                                
+#GEQ(=)ABGEQ(*)F                             p                        #                        select:F->p{PUSH}             c t1                                
+#GEQ(=)ABGEQ(*)PUSH(c)p                      p                        #                        match:p=p                     c t1                                
+#GEQ(=)ABGEQ(*)PUSH(c)                       #                                                 push to SEM:c                 c t1 c                              
+#GEQ(=)ABGEQ(*)                              #                                                 generate quaternion           c t2                  * t1 c t2     
+#GEQ(=)AB                                    #                                                 select:B->e                   c t2                                
+#GEQ(=)A                                     #                                                 select:A->e                   c t2                                
+#GEQ(=)                                      #                                                 generate quaternion                                 = t2 _ c      
+#                                            #                                                 match:#=#                                                         
+Right!
+The quaternions are:
+(1) (+ a b t1)----->t1 = a + b
+(2) (* t1 c t2)----->t2 = t1 * c
+(3) (= t2 _ c)----->c = t2
+
+
+*********************************************************** Output of LL1 Semantic Analyzer:***********************************************************
+expression:ss=a1*(-2.345)+8.09-a%6----------p=p*(i)+i-p%i#
+SYN Analysis stack                           Current character        Remaining sequence       Operation                     SEM Analysis stack    Quater        
+#S                                                                    p=p*(i)+i-p%i#           Start                                                             
+#S                                           p                        =p*(i)+i-p%i#            select:S->p{PUSH}=E{GEQ(=)}                                       
+#GEQ(=)E=PUSH(ss)p                           p                        =p*(i)+i-p%i#            match:p=p                                                         
+#GEQ(=)E=PUSH(ss)                            =                        p*(i)+i-p%i#             push to SEM:ss                ss                                  
+#GEQ(=)E=                                    =                        p*(i)+i-p%i#             match:===                     ss                                  
+#GEQ(=)E                                     p                        *(i)+i-p%i#              select:E->TA                  ss                                  
+#GEQ(=)AT                                    p                        *(i)+i-p%i#              select:T->FB                  ss                                  
+#GEQ(=)ABF                                   p                        *(i)+i-p%i#              select:F->p{PUSH}             ss                                  
+#GEQ(=)ABPUSH(a1)p                           p                        *(i)+i-p%i#              match:p=p                     ss                                  
+#GEQ(=)ABPUSH(a1)                            *                        (i)+i-p%i#               push to SEM:a1                ss a1                               
+#GEQ(=)AB                                    *                        (i)+i-p%i#               select:B->*F{GEQ(*)}B         ss a1                               
+#GEQ(=)ABGEQ(*)F*                            *                        (i)+i-p%i#               match:*=*                     ss a1                               
+#GEQ(=)ABGEQ(*)F                             (                        i)+i-p%i#                select:F->(E)                 ss a1                               
+#GEQ(=)ABGEQ(*))E(                           (                        i)+i-p%i#                match:(=(                     ss a1                               
+#GEQ(=)ABGEQ(*))E                            i                        )+i-p%i#                 select:E->TA                  ss a1                               
+#GEQ(=)ABGEQ(*))AT                           i                        )+i-p%i#                 select:T->FB                  ss a1                               
+#GEQ(=)ABGEQ(*))ABF                          i                        )+i-p%i#                 select:F->i{PUSH}             ss a1                               
+#GEQ(=)ABGEQ(*))ABPUSH(-2.345)i              i                        )+i-p%i#                 match:i=i                     ss a1                               
+#GEQ(=)ABGEQ(*))ABPUSH(-2.345)               )                        +i-p%i#                  push to SEM:-2.345            ss a1 -2.345                        
+#GEQ(=)ABGEQ(*))AB                           )                        +i-p%i#                  select:B->e                   ss a1 -2.345                        
+#GEQ(=)ABGEQ(*))A                            )                        +i-p%i#                  select:A->e                   ss a1 -2.345                        
+#GEQ(=)ABGEQ(*))                             )                        +i-p%i#                  match:)=)                     ss a1 -2.345                        
+#GEQ(=)ABGEQ(*)                              +                        i-p%i#                   generate quaternion           ss t1                 * a1 -2.345 t1
+#GEQ(=)AB                                    +                        i-p%i#                   select:B->e                   ss t1                               
+#GEQ(=)A                                     +                        i-p%i#                   select:A->+T{GEQ(+)}A         ss t1                               
+#GEQ(=)AGEQ(+)T+                             +                        i-p%i#                   match:+=+                     ss t1                               
+#GEQ(=)AGEQ(+)T                              i                        -p%i#                    select:T->FB                  ss t1                               
+#GEQ(=)AGEQ(+)BF                             i                        -p%i#                    select:F->i{PUSH}             ss t1                               
+#GEQ(=)AGEQ(+)BPUSH(8.09)i                   i                        -p%i#                    match:i=i                     ss t1                               
+#GEQ(=)AGEQ(+)BPUSH(8.09)                    -                        p%i#                     push to SEM:8.09              ss t1 8.09                          
+#GEQ(=)AGEQ(+)B                              -                        p%i#                     select:B->e                   ss t1 8.09                          
+#GEQ(=)AGEQ(+)                               -                        p%i#                     generate quaternion           ss t2                 + t1 8.09 t2  
+#GEQ(=)A                                     -                        p%i#                     select:A->-T{GEQ(-)}A         ss t2                               
+#GEQ(=)AGEQ(-)T-                             -                        p%i#                     match:-=-                     ss t2                               
+#GEQ(=)AGEQ(-)T                              p                        %i#                      select:T->FB                  ss t2                               
+#GEQ(=)AGEQ(-)BF                             p                        %i#                      select:F->p{PUSH}             ss t2                               
+#GEQ(=)AGEQ(-)BPUSH(a)p                      p                        %i#                      match:p=p                     ss t2                               
+#GEQ(=)AGEQ(-)BPUSH(a)                       %                        i#                       push to SEM:a                 ss t2 a                             
+#GEQ(=)AGEQ(-)B                              %                        i#                       select:B->%F{GEQ(%)}B         ss t2 a                             
+#GEQ(=)AGEQ(-)BGEQ(%)F%                      %                        i#                       match:%=%                     ss t2 a                             
+#GEQ(=)AGEQ(-)BGEQ(%)F                       i                        #                        select:F->i{PUSH}             ss t2 a                             
+#GEQ(=)AGEQ(-)BGEQ(%)PUSH(6)i                i                        #                        match:i=i                     ss t2 a                             
+#GEQ(=)AGEQ(-)BGEQ(%)PUSH(6)                 #                                                 push to SEM:6                 ss t2 a 6                           
+#GEQ(=)AGEQ(-)BGEQ(%)                        #                                                 generate quaternion           ss t2 t3              % a 6 t3      
+#GEQ(=)AGEQ(-)B                              #                                                 select:B->e                   ss t2 t3                            
+#GEQ(=)AGEQ(-)                               #                                                 generate quaternion           ss t4                 - t2 t3 t4    
+#GEQ(=)A                                     #                                                 select:A->e                   ss t4                               
+#GEQ(=)                                      #                                                 generate quaternion                                 = t4 _ ss     
+#                                            #                                                 match:#=#                                                         
+Right!
+The quaternions are:
+(1) (* a1 -2.345 t1)----->t1 = a1 * -2.345
+(2) (+ t1 8.09 t2)----->t2 = t1 + 8.09
+(3) (% a 6 t3)----->t3 = a % 6
+(4) (- t2 t3 t4)----->t4 = t2 - t3
+(5) (= t4 _ ss)----->ss = t4
+
+
+*********************************************************** Output of LL1 Semantic Analyzer:***********************************************************
+expression:a=a*(c+d)/2%d----------p=p*(p+p)/i%p#
+SYN Analysis stack                           Current character        Remaining sequence       Operation                     SEM Analysis stack    Quater        
+#S                                                                    p=p*(p+p)/i%p#           Start                                                             
+#S                                           p                        =p*(p+p)/i%p#            select:S->p{PUSH}=E{GEQ(=)}                                       
+#GEQ(=)E=PUSH(a)p                            p                        =p*(p+p)/i%p#            match:p=p                                                         
+#GEQ(=)E=PUSH(a)                             =                        p*(p+p)/i%p#             push to SEM:a                 a                                   
+#GEQ(=)E=                                    =                        p*(p+p)/i%p#             match:===                     a                                   
+#GEQ(=)E                                     p                        *(p+p)/i%p#              select:E->TA                  a                                   
+#GEQ(=)AT                                    p                        *(p+p)/i%p#              select:T->FB                  a                                   
+#GEQ(=)ABF                                   p                        *(p+p)/i%p#              select:F->p{PUSH}             a                                   
+#GEQ(=)ABPUSH(a)p                            p                        *(p+p)/i%p#              match:p=p                     a                                   
+#GEQ(=)ABPUSH(a)                             *                        (p+p)/i%p#               push to SEM:a                 a a                                 
+#GEQ(=)AB                                    *                        (p+p)/i%p#               select:B->*F{GEQ(*)}B         a a                                 
+#GEQ(=)ABGEQ(*)F*                            *                        (p+p)/i%p#               match:*=*                     a a                                 
+#GEQ(=)ABGEQ(*)F                             (                        p+p)/i%p#                select:F->(E)                 a a                                 
+#GEQ(=)ABGEQ(*))E(                           (                        p+p)/i%p#                match:(=(                     a a                                 
+#GEQ(=)ABGEQ(*))E                            p                        +p)/i%p#                 select:E->TA                  a a                                 
+#GEQ(=)ABGEQ(*))AT                           p                        +p)/i%p#                 select:T->FB                  a a                                 
+#GEQ(=)ABGEQ(*))ABF                          p                        +p)/i%p#                 select:F->p{PUSH}             a a                                 
+#GEQ(=)ABGEQ(*))ABPUSH(c)p                   p                        +p)/i%p#                 match:p=p                     a a                                 
+#GEQ(=)ABGEQ(*))ABPUSH(c)                    +                        p)/i%p#                  push to SEM:c                 a a c                               
+#GEQ(=)ABGEQ(*))AB                           +                        p)/i%p#                  select:B->e                   a a c                               
+#GEQ(=)ABGEQ(*))A                            +                        p)/i%p#                  select:A->+T{GEQ(+)}A         a a c                               
+#GEQ(=)ABGEQ(*))AGEQ(+)T+                    +                        p)/i%p#                  match:+=+                     a a c                               
+#GEQ(=)ABGEQ(*))AGEQ(+)T                     p                        )/i%p#                   select:T->FB                  a a c                               
+#GEQ(=)ABGEQ(*))AGEQ(+)BF                    p                        )/i%p#                   select:F->p{PUSH}             a a c                               
+#GEQ(=)ABGEQ(*))AGEQ(+)BPUSH(d)p             p                        )/i%p#                   match:p=p                     a a c                               
+#GEQ(=)ABGEQ(*))AGEQ(+)BPUSH(d)              )                        /i%p#                    push to SEM:d                 a a c d                             
+#GEQ(=)ABGEQ(*))AGEQ(+)B                     )                        /i%p#                    select:B->e                   a a c d                             
+#GEQ(=)ABGEQ(*))AGEQ(+)                      )                        /i%p#                    generate quaternion           a a t1                + c d t1      
+#GEQ(=)ABGEQ(*))A                            )                        /i%p#                    select:A->e                   a a t1                              
+#GEQ(=)ABGEQ(*))                             )                        /i%p#                    match:)=)                     a a t1                              
+#GEQ(=)ABGEQ(*)                              /                        i%p#                     generate quaternion           a t2                  * a t1 t2     
+#GEQ(=)AB                                    /                        i%p#                     select:B->/F{GEQ(/)}B         a t2                                
+#GEQ(=)ABGEQ(/)F/                            /                        i%p#                     match:/=/                     a t2                                
+#GEQ(=)ABGEQ(/)F                             i                        %p#                      select:F->i{PUSH}             a t2                                
+#GEQ(=)ABGEQ(/)PUSH(2)i                      i                        %p#                      match:i=i                     a t2                                
+#GEQ(=)ABGEQ(/)PUSH(2)                       %                        p#                       push to SEM:2                 a t2 2                              
+#GEQ(=)ABGEQ(/)                              %                        p#                       generate quaternion           a t3                  / t2 2 t3     
+#GEQ(=)AB                                    %                        p#                       select:B->%F{GEQ(%)}B         a t3                                
+#GEQ(=)ABGEQ(%)F%                            %                        p#                       match:%=%                     a t3                                
+#GEQ(=)ABGEQ(%)F                             p                        #                        select:F->p{PUSH}             a t3                                
+#GEQ(=)ABGEQ(%)PUSH(d)p                      p                        #                        match:p=p                     a t3                                
+#GEQ(=)ABGEQ(%)PUSH(d)                       #                                                 push to SEM:d                 a t3 d                              
+#GEQ(=)ABGEQ(%)                              #                                                 generate quaternion           a t4                  % t3 d t4     
+#GEQ(=)AB                                    #                                                 select:B->e                   a t4                                
+#GEQ(=)A                                     #                                                 select:A->e                   a t4                                
+#GEQ(=)                                      #                                                 generate quaternion                                 = t4 _ a      
+#                                            #                                                 match:#=#                                                         
+Right!
+The quaternions are:
+(1) (+ c d t1)----->t1 = c + d
+(2) (* a t1 t2)----->t2 = a * t1
+(3) (/ t2 2 t3)----->t3 = t2 / 2
+(4) (% t3 d t4)----->t4 = t3 % d
+(5) (= t4 _ a)----->a = t4
+
+
+*********************************************************** Output of LL1 Semantic Analyzer:***********************************************************
+expression:a=(a+b)%(a+a*b)----------p=(p+p)%(p+p*p)#
+SYN Analysis stack                           Current character        Remaining sequence       Operation                     SEM Analysis stack    Quater        
+#S                                                                    p=(p+p)%(p+p*p)#         Start                                                             
+#S                                           p                        =(p+p)%(p+p*p)#          select:S->p{PUSH}=E{GEQ(=)}                                       
+#GEQ(=)E=PUSH(a)p                            p                        =(p+p)%(p+p*p)#          match:p=p                                                         
+#GEQ(=)E=PUSH(a)                             =                        (p+p)%(p+p*p)#           push to SEM:a                 a                                   
+#GEQ(=)E=                                    =                        (p+p)%(p+p*p)#           match:===                     a                                   
+#GEQ(=)E                                     (                        p+p)%(p+p*p)#            select:E->TA                  a                                   
+#GEQ(=)AT                                    (                        p+p)%(p+p*p)#            select:T->FB                  a                                   
+#GEQ(=)ABF                                   (                        p+p)%(p+p*p)#            select:F->(E)                 a                                   
+#GEQ(=)AB)E(                                 (                        p+p)%(p+p*p)#            match:(=(                     a                                   
+#GEQ(=)AB)E                                  p                        +p)%(p+p*p)#             select:E->TA                  a                                   
+#GEQ(=)AB)AT                                 p                        +p)%(p+p*p)#             select:T->FB                  a                                   
+#GEQ(=)AB)ABF                                p                        +p)%(p+p*p)#             select:F->p{PUSH}             a                                   
+#GEQ(=)AB)ABPUSH(a)p                         p                        +p)%(p+p*p)#             match:p=p                     a                                   
+#GEQ(=)AB)ABPUSH(a)                          +                        p)%(p+p*p)#              push to SEM:a                 a a                                 
+#GEQ(=)AB)AB                                 +                        p)%(p+p*p)#              select:B->e                   a a                                 
+#GEQ(=)AB)A                                  +                        p)%(p+p*p)#              select:A->+T{GEQ(+)}A         a a                                 
+#GEQ(=)AB)AGEQ(+)T+                          +                        p)%(p+p*p)#              match:+=+                     a a                                 
+#GEQ(=)AB)AGEQ(+)T                           p                        )%(p+p*p)#               select:T->FB                  a a                                 
+#GEQ(=)AB)AGEQ(+)BF                          p                        )%(p+p*p)#               select:F->p{PUSH}             a a                                 
+#GEQ(=)AB)AGEQ(+)BPUSH(b)p                   p                        )%(p+p*p)#               match:p=p                     a a                                 
+#GEQ(=)AB)AGEQ(+)BPUSH(b)                    )                        %(p+p*p)#                push to SEM:b                 a a b                               
+#GEQ(=)AB)AGEQ(+)B                           )                        %(p+p*p)#                select:B->e                   a a b                               
+#GEQ(=)AB)AGEQ(+)                            )                        %(p+p*p)#                generate quaternion           a t1                  + a b t1      
+#GEQ(=)AB)A                                  )                        %(p+p*p)#                select:A->e                   a t1                                
+#GEQ(=)AB)                                   )                        %(p+p*p)#                match:)=)                     a t1                                
+#GEQ(=)AB                                    %                        (p+p*p)#                 select:B->%F{GEQ(%)}B         a t1                                
+#GEQ(=)ABGEQ(%)F%                            %                        (p+p*p)#                 match:%=%                     a t1                                
+#GEQ(=)ABGEQ(%)F                             (                        p+p*p)#                  select:F->(E)                 a t1                                
+#GEQ(=)ABGEQ(%))E(                           (                        p+p*p)#                  match:(=(                     a t1                                
+#GEQ(=)ABGEQ(%))E                            p                        +p*p)#                   select:E->TA                  a t1                                
+#GEQ(=)ABGEQ(%))AT                           p                        +p*p)#                   select:T->FB                  a t1                                
+#GEQ(=)ABGEQ(%))ABF                          p                        +p*p)#                   select:F->p{PUSH}             a t1                                
+#GEQ(=)ABGEQ(%))ABPUSH(a)p                   p                        +p*p)#                   match:p=p                     a t1                                
+#GEQ(=)ABGEQ(%))ABPUSH(a)                    +                        p*p)#                    push to SEM:a                 a t1 a                              
+#GEQ(=)ABGEQ(%))AB                           +                        p*p)#                    select:B->e                   a t1 a                              
+#GEQ(=)ABGEQ(%))A                            +                        p*p)#                    select:A->+T{GEQ(+)}A         a t1 a                              
+#GEQ(=)ABGEQ(%))AGEQ(+)T+                    +                        p*p)#                    match:+=+                     a t1 a                              
+#GEQ(=)ABGEQ(%))AGEQ(+)T                     p                        *p)#                     select:T->FB                  a t1 a                              
+#GEQ(=)ABGEQ(%))AGEQ(+)BF                    p                        *p)#                     select:F->p{PUSH}             a t1 a                              
+#GEQ(=)ABGEQ(%))AGEQ(+)BPUSH(a)p             p                        *p)#                     match:p=p                     a t1 a                              
+#GEQ(=)ABGEQ(%))AGEQ(+)BPUSH(a)              *                        p)#                      push to SEM:a                 a t1 a a                            
+#GEQ(=)ABGEQ(%))AGEQ(+)B                     *                        p)#                      select:B->*F{GEQ(*)}B         a t1 a a                            
+#GEQ(=)ABGEQ(%))AGEQ(+)BGEQ(*)F*             *                        p)#                      match:*=*                     a t1 a a                            
+#GEQ(=)ABGEQ(%))AGEQ(+)BGEQ(*)F              p                        )#                       select:F->p{PUSH}             a t1 a a                            
+#GEQ(=)ABGEQ(%))AGEQ(+)BGEQ(*)PUSH(b)p       p                        )#                       match:p=p                     a t1 a a                            
+#GEQ(=)ABGEQ(%))AGEQ(+)BGEQ(*)PUSH(b)        )                        #                        push to SEM:b                 a t1 a a b                          
+#GEQ(=)ABGEQ(%))AGEQ(+)BGEQ(*)               )                        #                        generate quaternion           a t1 a t2             * a b t2      
+#GEQ(=)ABGEQ(%))AGEQ(+)B                     )                        #                        select:B->e                   a t1 a t2                           
+#GEQ(=)ABGEQ(%))AGEQ(+)                      )                        #                        generate quaternion           a t1 t3               + a t2 t3     
+#GEQ(=)ABGEQ(%))A                            )                        #                        select:A->e                   a t1 t3                             
+#GEQ(=)ABGEQ(%))                             )                        #                        match:)=)                     a t1 t3                             
+#GEQ(=)ABGEQ(%)                              #                                                 generate quaternion           a t4                  % t1 t3 t4    
+#GEQ(=)AB                                    #                                                 select:B->e                   a t4                                
+#GEQ(=)A                                     #                                                 select:A->e                   a t4                                
+#GEQ(=)                                      #                                                 generate quaternion                                 = t4 _ a      
+#                                            #                                                 match:#=#                                                         
+Right!
+The quaternions are:
+(1) (+ a b t1)----->t1 = a + b
+(2) (* a b t2)----->t2 = a * b
+(3) (+ a t2 t3)----->t3 = a + t2
+(4) (% t1 t3 t4)----->t4 = t1 % t3
+(5) (= t4 _ a)----->a = t4
+
+
