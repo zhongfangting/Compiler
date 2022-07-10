@@ -1,0 +1,20 @@
+program compare
+    var a,b:integer;
+    var c:integer;
+    var d:real;
+begin
+    if(a<b)
+    begin
+        c:=2.6+c;
+        d:=2.4*(a+b)/(a-c);
+    end
+    elif(c<d)
+    begin
+        c:=1;
+        d:=5.6*(c-d);
+    end
+    else
+    begin
+        c:=2;
+    end
+end
